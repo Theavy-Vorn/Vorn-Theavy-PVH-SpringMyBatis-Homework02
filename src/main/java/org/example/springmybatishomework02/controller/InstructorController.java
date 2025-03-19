@@ -57,4 +57,29 @@ public class InstructorController {
         return ResponseEntity.ok(respone);
 
     }
+
+    @PutMapping("/{instructor_id}")
+    public ResponseEntity<ApiRespone<Instructor>> updateInstructor(@PathVariable("instructor_id") int instructorId,@RequestBody InstructorRequest instructorRequest){
+        ApiRespone<Instructor> respone = ApiRespone.<Instructor>builder()
+                .message("Update Instructor by id succeddful")
+                .status(HttpStatus.OK)
+                .success(true)
+                .payload(instrutorService.updateInstructor(instructorId,instructorRequest))
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.ok(respone);
+    }
+
+    @DeleteMapping("/{instructor_id}")
+    public ResponseEntity<?> deleteInstructor(@PathVariable Integer instructor_id) {
+        //delete
+        instrutorService.deleteInstructor(instructor_id);
+        ApiRespone<String> respone = ApiRespone.<String>builder()
+                .message("Delete Instructor successful")
+                .status(HttpStatus.OK)
+                .success(true)
+                .payload("Success")
+                .build();
+        return ResponseEntity.ok(respone);
+    }
 }

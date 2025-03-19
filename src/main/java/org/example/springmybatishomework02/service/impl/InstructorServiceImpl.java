@@ -4,6 +4,7 @@ import org.example.springmybatishomework02.model.dto.request.InstructorRequest;
 import org.example.springmybatishomework02.model.entity.Instructor;
 import org.example.springmybatishomework02.repository.InstructorRepository;
 import org.example.springmybatishomework02.service.InstrutorService;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,4 +30,17 @@ public class InstructorServiceImpl implements InstrutorService {
     public Instructor searchInstructor(Integer instructor_id) {
         return instructorRepository.searchInstructor(instructor_id);
     }
+
+    @Override
+    public Instructor updateInstructor(int instructorId, InstructorRequest instructorRequest) {
+
+        return instructorRepository.updateInstructor(instructorId,instructorRequest);
+    }
+
+    @Override
+    public void deleteInstructor(Integer instructorId) {
+        instructorRepository.deleteInstructor(instructorId);
+    }
+
+
 }

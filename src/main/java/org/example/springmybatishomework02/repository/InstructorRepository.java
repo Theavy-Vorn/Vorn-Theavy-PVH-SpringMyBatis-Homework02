@@ -1,5 +1,6 @@
 package org.example.springmybatishomework02.repository;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -26,4 +27,17 @@ public interface InstructorRepository {
         SELECT * FROM instructors WHERE instructor_id = #{id}
     """)
     Instructor searchInstructor(@Param("id") Integer instructor_id);
+
+    @Select("""
+           UPDATE instructors SET instructor_name=#{request.instructor_name},email=#{request.email}
+           Where instructor_id =#{instructorId}
+           RETURNING *
+""")
+
+    Instructor updateInstructor(int instructorId,@Param("request") InstructorRequest instructorRequest);
+
+    @Delete("""
+        DELETE FROM instructors where instructor_id = #{instructorId}
+ """)
+    void deleteInstructor(Integer instructorId);
 }
