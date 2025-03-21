@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
-    private Integer student_id;
+    private Integer studentId;
     private String student_name;
     private String email;
     private String phone_number;

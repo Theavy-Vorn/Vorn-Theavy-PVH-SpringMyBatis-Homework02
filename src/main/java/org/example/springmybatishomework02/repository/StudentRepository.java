@@ -1,6 +1,7 @@
 package org.example.springmybatishomework02.repository;
 
 import org.apache.ibatis.annotations.*;
+import org.example.springmybatishomework02.model.dto.request.StudentResquest;
 import org.example.springmybatishomework02.model.entity.Student;
 
 import java.util.List;
@@ -10,14 +11,16 @@ public interface StudentRepository {
     SELECT * FROM students;
 """)
     @Results(id = "StudentMapper", value = {
-            @Result(property = "student_id", column = "student_id"),
-            @Result(property = "student_name", column = "student_name"),
-            @Result(property = "email", column = "email"),
-            @Result(property = "phone_number", column = "phone_number"),
+            @Result(property = "studentId", column = "student_id"),
             @Result(property = "courses",
                     column = "student_id",
                     many = @Many(select = "org.example.springmybatishomework02.repository.CourseRepository.getAllCourseByStudentId"))
     })
     List<Student> getStudent();
-
+    @Select("""
+        INSERT INTO students (student_name, email, phone_number) VALUES (#{request.student_name},#{request.email},#{request.phone_number})
+        RETURNING *
+""")
+    @ResultMap("StudentMapper")
+    List<Student> addStudent(@Param("request") StudentResquest studentResquest);
 }

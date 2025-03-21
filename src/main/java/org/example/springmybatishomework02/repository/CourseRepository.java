@@ -41,6 +41,7 @@ public interface CourseRepository {
     @ResultMap("CoursMapper")
     void deleteCourseById(Integer courseId);
 
+
     @Select("""
     SELECT c.course_id, c.course_name, c.description, c.instructor_id
     FROM student_course sc
@@ -52,7 +53,7 @@ public interface CourseRepository {
                     column = "instructor_id",
                     one = @One(select = "org.example.springmybatishomework02.repository.InstructorRepository.searchInstructor"))
     })
-    List<Course> getAllCourseByStudentId(Integer student_id);
+    List<Course> getAllCourseByStudentId(Integer studentId);
 
 
 
