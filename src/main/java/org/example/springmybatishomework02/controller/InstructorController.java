@@ -1,5 +1,4 @@
 package org.example.springmybatishomework02.controller;
-
 import org.example.springmybatishomework02.model.dto.request.InstructorRequest;
 import org.example.springmybatishomework02.model.dto.respone.ApiRespone;
 import org.example.springmybatishomework02.model.entity.Instructor;
@@ -7,7 +6,6 @@ import org.example.springmybatishomework02.service.InstrutorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 

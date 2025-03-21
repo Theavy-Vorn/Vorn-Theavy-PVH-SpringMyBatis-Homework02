@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringMybatisHomework02Application {
-
     public static void main(String[] args) {
         SpringApplication.run(SpringMybatisHomework02Application.class, args);
     }

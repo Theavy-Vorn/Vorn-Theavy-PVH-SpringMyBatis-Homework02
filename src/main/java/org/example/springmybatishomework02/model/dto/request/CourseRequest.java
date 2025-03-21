@@ -11,5 +11,5 @@ import org.example.springmybatishomework02.model.entity.Instructor;
 public class CourseRequest {
     private String course_name;
     private String description;
-    private Instructor instructor;
+    private Integer instructorId;
 }

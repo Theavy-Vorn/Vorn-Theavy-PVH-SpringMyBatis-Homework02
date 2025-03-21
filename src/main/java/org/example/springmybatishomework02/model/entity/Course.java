@@ -12,5 +12,4 @@ public class Course {
     private String course_name;
     private String description;
     private Instructor instructor;
-
 }

@@ -3,7 +3,6 @@ package org.example.springmybatishomework02.controller;
 import org.example.springmybatishomework02.model.dto.request.CourseRequest;
 import org.example.springmybatishomework02.model.dto.respone.ApiRespone;
 import org.example.springmybatishomework02.model.entity.Course;
-import org.example.springmybatishomework02.model.entity.Instructor;
 import org.example.springmybatishomework02.service.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +32,7 @@ public class CourseController {
 
         return ResponseEntity.ok(respone);
     }
-    @PostMapping("{course_id}")
+    @PostMapping
     public ResponseEntity<ApiRespone <List<Course>>> addCourse(@RequestBody CourseRequest courseRequest){
         ApiRespone<List<Course>> respone = ApiRespone.<List<Course>>builder()
                 .message("Add course successful")

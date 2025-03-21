@@ -22,14 +22,14 @@ public interface CourseRepository {
     @ResultMap("CoursMapper")
     List<Course> SearcCourseById(Integer courseId);
     @Select("""
-    INSERT INTO courses (course_name,description)
-    VALUES (#{request.course_name},#{request.description})
+    INSERT INTO courses (course_name,description,instructor_id)
+    VALUES (#{request.course_name},#{request.description},#{request.instructorId})
     RETURNING *
 """)
     @ResultMap("CoursMapper")
     List<Course> addCourse(@Param("request") CourseRequest courseRequest);
     @Select("""
-    UPDATE courses SET course_name=#{request.course_name},description=#{request.description}
+    UPDATE courses SET course_name=#{request.course_name},description=#{request.description},instructor_id=#{request.instructorId}
     WHERE course_id = #{courseId}
     RETURNING *
 """)
@@ -40,4 +40,20 @@ public interface CourseRepository {
  """)
     @ResultMap("CoursMapper")
     void deleteCourseById(Integer courseId);
+
+    @Select("""
+    SELECT c.course_id, c.course_name, c.description, c.instructor_id
+    FROM student_course sc
+    INNER JOIN courses c ON sc.course_id = c.course_id
+    WHERE sc.student_id = #{studentId};
+""")
+    @Results(id = "StudentCourseMapper", value = {
+            @Result(property = "instructor",
+                    column = "instructor_id",
+                    one = @One(select = "org.example.springmybatishomework02.repository.InstructorRepository.searchInstructor"))
+    })
+    List<Course> getAllCourseByStudentId(Integer student_id);
+
+
+
 }
